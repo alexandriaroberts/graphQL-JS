@@ -25,17 +25,22 @@ const typeDefs = gql`
     movie(name: String!): Movie!
   }
 
-  input createUserInput {
+  input CreateUserInput {
     name: String!
     username: String!
     age: Int!
-    nationality: String!
-    friends: [User]
-    favouriteMovies: [Movie]
+    nationality: String = GERMANY
+  }
+
+  input UpdateUsernameInput {
+    id: ID!
+    newUsername: String!
   }
 
   type Mutation {
-    createUser(input: User!): User!
+    createUser(input: CreateUserInput!): User!
+    updateUsername(input: UpdateUsernameInput!): User
+    deleteUser(id: ID!): User
   }
 
   enum Nationality {
